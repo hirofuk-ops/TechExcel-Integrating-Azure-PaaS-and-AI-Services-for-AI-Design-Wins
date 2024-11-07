@@ -8,8 +8,6 @@ st.set_page_config(layout="wide")
 def get_hotels():
     """Return a list of hotels from the API."""
     api_endpoint = st.secrets["api"]["endpoint"]
-    #api_endpoint = "http://localhost:5292/"
-    #print(api_endpoint)
     response = requests.get(f"{api_endpoint}/Hotels", timeout=10)
     return response
 
@@ -17,7 +15,6 @@ def get_hotels():
 def get_hotel_bookings(hotel_id):
     """Return a list of bookings for the specified hotel."""
     api_endpoint = st.secrets["api"]["endpoint"]
-    #api_endpoint = "http://localhost:5292/"
     response = requests.get(f"{api_endpoint}/Hotels/{hotel_id}/Bookings", timeout=10)
     return response
 
@@ -25,7 +22,6 @@ def get_hotel_bookings(hotel_id):
 def invoke_chat_endpoint(question):
     """Invoke the chat endpoint with the specified question."""
     api_endpoint = st.secrets["api"]["endpoint"]
-    #api_endpoint = "http://localhost:5292/"
     response = requests.post(f"{api_endpoint}/Chat", data={"message": question}, timeout=10)
     return response
 
