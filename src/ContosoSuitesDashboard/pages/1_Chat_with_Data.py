@@ -31,7 +31,22 @@ def create_chat_completion(messages):
             {"role": m["role"], "content": m["content"]}
             for m in messages
         ],
-        stream=True
+        stream=True,
+                extra_body={
+            "data_sources": [
+                {
+                    "type": "azure_search",
+                    "parameters": {
+                        "endpoint": search_endpoint,
+                        "index_name": search_index_name,
+                        "authentication": {
+                            "type": "api_key",
+                            "key": search_key
+                        }
+                    }
+                }
+            ]
+        }
     )
 
 def handle_chat_prompt(prompt):
